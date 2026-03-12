@@ -1,0 +1,20 @@
+name: Docker Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      packages: write
+    with:
+      image_name: mvs5465/space-cadet
+      tags: |
+        type=ref,event=branch
+        type=sha,prefix=sha-
+    uses: mvs5465-test/.github/.github/workflows/docker-build.yml@main
