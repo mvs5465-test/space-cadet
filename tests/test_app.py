@@ -1,4 +1,4 @@
-from space_cadet.app import app
+from space_cadet.app import IMAGE_CATALOG, app
 
 
 def test_index_renders_catalog():
@@ -9,8 +9,9 @@ def test_index_renders_catalog():
     assert response.status_code == 200
     body = response.get_data(as_text=True)
     assert "Space Cadet" in body
-    assert "Veil Nebula" in body
+    assert IMAGE_CATALOG[0]["title"] in body
     assert "hero-image" in body
+    assert "Open NASA record" in body
 
 
 def test_healthz():
@@ -32,6 +33,8 @@ def test_images_api():
     assert len(payload["images"]) == 3
     assert payload["images"][0]["parts"]
     assert payload["images"][0]["imageUrl"].startswith("/static/images/")
+    assert payload["images"][0]["sourceUrl"].startswith("https://images.nasa.gov/details-")
+    assert payload["images"][0]["nasaId"]
 
 
 def test_static_image_asset():

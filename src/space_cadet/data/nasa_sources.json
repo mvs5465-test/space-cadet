@@ -3,135 +3,87 @@
     {
       "id": "andromeda-galaxy",
       "nasaId": "PIA04921",
-      "title": "Andromeda Galaxy",
       "subtitle": "GALEX ultraviolet view",
-      "summary": "This image is from NASA Galaxy Evolution Explorer is an observation of the large galaxy in Andromeda, Messier 31.",
-      "description": "This image is from NASA Galaxy Evolution Explorer is an observation of the large galaxy in Andromeda, Messier 31. The Andromeda galaxy is the most massive in the local group of galaxies that includes our Milky Way.",
-      "credit": "NASA/JPL/California Institute of Technology",
-      "dateCreated": "2003-12-10",
-      "sourceUrl": "https://images.nasa.gov/details-PIA04921",
       "background": "linear-gradient(135deg, #0f172a 0%, #1d4ed8 45%, #f8fafc 100%)",
-      "asset": "images/nasa/andromeda-galaxy.jpg",
       "parts": [
         {
           "id": "core-glow",
           "name": "Core Glow",
           "focus": "Bright nucleus and dense central light concentration.",
           "details": "Use this region to validate the default selected state and metadata layout against the brightest part of the image.",
-          "hotspot": {
-            "x": 49,
-            "y": 49
-          }
+          "hotspot": { "x": 49, "y": 49 }
         },
         {
           "id": "dust-lanes",
           "name": "Dust Lanes",
           "focus": "Dark diagonal banding that cuts across the galactic disk.",
           "details": "A useful target for future box or polygon regions once the app moves beyond single-point hotspots.",
-          "hotspot": {
-            "x": 38,
-            "y": 58
-          }
+          "hotspot": { "x": 38, "y": 58 }
         },
         {
           "id": "outer-halo",
           "name": "Outer Halo",
           "focus": "Fainter edge structure beyond the brightest disk.",
           "details": "This gives the UI a lower-contrast region that still feels connected to the same image narrative.",
-          "hotspot": {
-            "x": 72,
-            "y": 34
-          }
+          "hotspot": { "x": 72, "y": 34 }
         }
       ]
     },
     {
       "id": "eagle-nebula",
       "nasaId": "PIA25433",
-      "title": "The Eagle Nebula Observed by WISE",
       "subtitle": "WISE infrared survey view",
-      "summary": "The dusty face of the Eagle Nebula and its surroundings are revealed in this image based on data from NASA's Wide Field Survey Explorer (WISE).",
-      "description": "The dusty face of the Eagle Nebula and its surroundings are revealed in this image based on data from NASA's Wide Field Survey Explorer (WISE).",
-      "credit": "NASA/JPL-Caltech",
-      "dateCreated": "2022-11-11",
-      "sourceUrl": "https://images.nasa.gov/details-PIA25433",
       "background": "linear-gradient(135deg, #140f2d 0%, #4c1d95 40%, #f97316 100%)",
-      "asset": "images/nasa/eagle-nebula.jpg",
       "parts": [
         {
           "id": "pillar-region",
           "name": "Pillar Region",
           "focus": "The broader area containing the famous Pillars of Creation.",
           "details": "The WISE view is wider and softer than Hubble or Webb, so this region is a good example of browsing context before detail.",
-          "hotspot": {
-            "x": 34,
-            "y": 55
-          }
+          "hotspot": { "x": 34, "y": 55 }
         },
         {
           "id": "inner-ridge",
           "name": "Inner Ridge",
           "focus": "A brighter transition where warm tones cluster near the nebula's center.",
           "details": "This is a practical stand-in for future annotations tied to notable structures or reference notes.",
-          "hotspot": {
-            "x": 61,
-            "y": 37
-          }
+          "hotspot": { "x": 61, "y": 37 }
         },
         {
           "id": "outer-field",
           "name": "Outer Field",
           "focus": "Surrounding nebulosity that shows the wider context around the pillars.",
           "details": "The broader field helps test image navigation without forcing every region to be tightly zoomed.",
-          "hotspot": {
-            "x": 77,
-            "y": 24
-          }
+          "hotspot": { "x": 77, "y": 24 }
         }
       ]
     },
     {
       "id": "favorite-nebula",
       "nasaId": "PIA15413",
-      "title": "An Audience Favorite Nebula",
       "subtitle": "Spitzer infrared view",
-      "summary": "This nebula, which is in the constellation of Scutum, has no common name since it is hidden behind dust clouds.",
-      "description": "This nebula, which is in the constellation of Scutum, has no common name since it is hidden behind dust clouds. It takes an infrared telescope like NASA Spitzer to see through this dark veil and reveal this spectacular hidden nebula.",
-      "credit": "NASA/JPL-Caltech/University of Wisconsin",
-      "dateCreated": "2012-03-08",
-      "sourceUrl": "https://images.nasa.gov/details-PIA15413",
       "background": "linear-gradient(135deg, #020617 0%, #102a43 45%, #0f766e 100%)",
-      "asset": "images/nasa/favorite-nebula.jpg",
       "parts": [
         {
           "id": "hidden-core",
           "name": "Hidden Core",
           "focus": "Brighter central nebula emerging from the infrared color field.",
           "details": "This is the region most likely to become the default focus card when we add deep links or saved selections.",
-          "hotspot": {
-            "x": 56,
-            "y": 48
-          }
+          "hotspot": { "x": 56, "y": 48 }
         },
         {
           "id": "dust-veil",
           "name": "Dust Veil",
           "focus": "Dark obscuring material framing the brighter nebular interior.",
           "details": "A useful target for any future overlay mode that needs to emphasize boundaries rather than single points.",
-          "hotspot": {
-            "x": 25,
-            "y": 34
-          }
+          "hotspot": { "x": 25, "y": 34 }
         },
         {
           "id": "outer-clouds",
           "name": "Outer Clouds",
           "focus": "Lower-contrast outer region where the nebula fades into the frame.",
           "details": "This helps test whether the right-side metadata remains useful even when the region itself is visually subtle.",
-          "hotspot": {
-            "x": 78,
-            "y": 70
-          }
+          "hotspot": { "x": 78, "y": 70 }
         }
       ]
     }
