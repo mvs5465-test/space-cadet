@@ -1,0 +1,35 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/mvs5465-test/space-cadet
+  tag: "main"
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  host: ""
+  path: /
+  pathType: Prefix
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "300m"
+
+env: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

@@ -1,3 +1,3 @@
-"""Space Cadet - Astronomy data exploration tool."""
+"""Space Cadet package."""
 
 __version__ = "0.1.0"

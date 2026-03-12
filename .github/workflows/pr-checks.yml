@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11"
           cache: pip
 
       - name: Install dependencies
@@ -24,7 +24,11 @@ jobs:
         run: ruff check .
 
       - name: Test
-        run: pytest
+        run: pytest tests/ -v
 
   ct-lint:
     uses: mvs5465-test/.github/.github/workflows/ct-lint.yml@main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref || github.run_id }}
+  cancel-in-progress: true
