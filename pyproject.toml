@@ -19,6 +19,7 @@ dev = [
 
 [project.scripts]
 space-cadet = "space_cadet.app:main"
+space-cadet-import-nasa = "space_cadet.nasa_import:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/space_cadet"]

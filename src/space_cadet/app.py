@@ -268,6 +268,32 @@ INDEX_HTML = """<!DOCTYPE html>
       color: var(--muted);
       line-height: 1.5;
     }
+    .meta-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .meta-item {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(2, 6, 23, 0.28);
+    }
+    .meta-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .meta-item a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .meta-item a:hover {
+      text-decoration: underline;
+    }
     code {
       font-family: "SF Mono", "Menlo", monospace;
       color: var(--accent);
@@ -327,6 +353,24 @@ INDEX_HTML = """<!DOCTYPE html>
           <p class="subtitle">Current target</p>
           <h2 id="details-title"></h2>
           <p id="details-summary"></p>
+          <div class="meta-grid">
+            <div class="meta-item">
+              <strong>NASA ID</strong>
+              <span id="details-nasa-id"></span>
+            </div>
+            <div class="meta-item">
+              <strong>Date Created</strong>
+              <span id="details-date"></span>
+            </div>
+            <div class="meta-item">
+              <strong>Credit</strong>
+              <span id="details-credit"></span>
+            </div>
+            <div class="meta-item">
+              <strong>Source</strong>
+              <a id="details-source" href="" target="_blank" rel="noreferrer">Open NASA record</a>
+            </div>
+          </div>
           <div class="part-list" id="part-list"></div>
           <div class="cluster-note">
             For local iteration this stays dead simple:
@@ -402,6 +446,11 @@ INDEX_HTML = """<!DOCTYPE html>
       document.getElementById("focus-text").textContent = activePart.details;
       document.getElementById("details-title").textContent = activeImage.title;
       document.getElementById("details-summary").textContent = activeImage.summary;
+      document.getElementById("details-nasa-id").textContent = activeImage.nasaId;
+      document.getElementById("details-date").textContent = activeImage.dateCreated;
+      document.getElementById("details-credit").textContent = activeImage.credit;
+      const source = document.getElementById("details-source");
+      source.href = activeImage.sourceUrl;
     }
 
     function render() {
