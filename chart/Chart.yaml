@@ -1,0 +1,6 @@
+apiVersion: v2
+name: space-cadet
+description: Cluster-ready astronomy image browser
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
