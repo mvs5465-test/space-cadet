@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Andromeda Galaxy</title>
+  <desc id="desc">Illustrated galaxy scene for local UI development.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1224"/>
+      <stop offset="55%" stop-color="#1e4fc5"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <radialGradient id="core" cx="50%" cy="50%" r="48%">
+      <stop offset="0%" stop-color="#fffaf0" stop-opacity="1"/>
+      <stop offset="18%" stop-color="#fde68a" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#cbd5e1" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#cbd5e1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#08101f"/>
+  <rect width="1200" height="900" fill="url(#bg)" opacity="0.35"/>
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="120" cy="88" r="1.8"/>
+    <circle cx="188" cy="318" r="1.4"/>
+    <circle cx="284" cy="156" r="2.0"/>
+    <circle cx="406" cy="96" r="1.6"/>
+    <circle cx="548" cy="188" r="1.8"/>
+    <circle cx="684" cy="108" r="1.5"/>
+    <circle cx="870" cy="164" r="1.8"/>
+    <circle cx="1020" cy="130" r="1.7"/>
+    <circle cx="1092" cy="314" r="2.1"/>
+    <circle cx="1044" cy="728" r="1.6"/>
+    <circle cx="734" cy="790" r="1.9"/>
+    <circle cx="348" cy="722" r="1.6"/>
+  </g>
+  <ellipse cx="600" cy="450" rx="395" ry="158" fill="#dbeafe" fill-opacity="0.12" transform="rotate(-14 600 450)"/>
+  <ellipse cx="600" cy="450" rx="285" ry="120" fill="url(#core)" transform="rotate(-14 600 450)"/>
+  <ellipse cx="600" cy="450" rx="350" ry="98" fill="none" stroke="#f8fafc" stroke-opacity="0.42" stroke-width="30" transform="rotate(-14 600 450)"/>
+  <ellipse cx="600" cy="450" rx="310" ry="78" fill="none" stroke="#93c5fd" stroke-opacity="0.32" stroke-width="20" transform="rotate(-14 600 450)"/>
+  <path d="M280 520 C420 480, 545 435, 842 320" fill="none" stroke="#0f172a" stroke-opacity="0.55" stroke-width="22" stroke-linecap="round"/>
+  <path d="M355 625 C520 558, 650 500, 920 398" fill="none" stroke="#0f172a" stroke-opacity="0.42" stroke-width="16" stroke-linecap="round"/>
+</svg>

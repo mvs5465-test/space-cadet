@@ -10,6 +10,7 @@ def test_index_renders_catalog():
     body = response.get_data(as_text=True)
     assert "Space Cadet" in body
     assert "Veil Nebula" in body
+    assert "hero-image" in body
 
 
 def test_healthz():
@@ -30,3 +31,13 @@ def test_images_api():
     payload = response.get_json()
     assert len(payload["images"]) == 3
     assert payload["images"][0]["parts"]
+    assert payload["images"][0]["imageUrl"].startswith("/static/images/")
+
+
+def test_static_image_asset():
+    client = app.test_client()
+
+    response = client.get("/static/images/veil-nebula.svg")
+
+    assert response.status_code == 200
+    assert response.mimetype == "image/svg+xml"
