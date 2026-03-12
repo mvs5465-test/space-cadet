@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Veil Nebula</title>
+  <desc id="desc">Illustrated nebula scene for local UI development.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06101d"/>
+      <stop offset="50%" stop-color="#13334d"/>
+      <stop offset="100%" stop-color="#0a7d74"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#d8fbff" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#7dd3fc" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="115" cy="140" r="2.2"/>
+    <circle cx="220" cy="310" r="1.7"/>
+    <circle cx="351" cy="126" r="1.9"/>
+    <circle cx="428" cy="472" r="1.6"/>
+    <circle cx="522" cy="172" r="2.1"/>
+    <circle cx="648" cy="290" r="2.2"/>
+    <circle cx="761" cy="188" r="1.8"/>
+    <circle cx="882" cy="268" r="2.1"/>
+    <circle cx="966" cy="156" r="1.8"/>
+    <circle cx="1088" cy="362" r="2.5"/>
+    <circle cx="1030" cy="654" r="1.7"/>
+    <circle cx="834" cy="726" r="2.0"/>
+    <circle cx="612" cy="794" r="1.8"/>
+  </g>
+  <ellipse cx="360" cy="310" rx="250" ry="120" fill="url(#glow)" opacity="0.95"/>
+  <ellipse cx="675" cy="470" rx="290" ry="160" fill="url(#glow)" opacity="0.65"/>
+  <path d="M120 285 C250 175, 360 165, 490 250 S770 390, 1015 295" fill="none" stroke="#dbfeff" stroke-opacity="0.72" stroke-width="28" stroke-linecap="round"/>
+  <path d="M194 385 C355 255, 480 252, 610 348 S885 560, 1100 500" fill="none" stroke="#7dd3fc" stroke-opacity="0.6" stroke-width="18" stroke-linecap="round"/>
+  <path d="M132 510 C310 408, 462 420, 644 520 S936 720, 1120 660" fill="none" stroke="#99f6e4" stroke-opacity="0.42" stroke-width="12" stroke-linecap="round"/>
+</svg>

@@ -4,93 +4,25 @@ from __future__ import annotations
 
 import json
 import os
+from pathlib import Path
 
 from flask import Flask, jsonify
 
 
-IMAGE_CATALOG = [
-    {
-        "id": "veil-nebula",
-        "title": "Veil Nebula",
-        "subtitle": "Supernova remnant sweep",
-        "summary": "Trace the shock-front filaments and compare bright knots across the frame.",
-        "background": "linear-gradient(135deg, #020617 0%, #102a43 45%, #0f766e 100%)",
-        "parts": [
-            {
-                "id": "western-arc",
-                "name": "Western Arc",
-                "focus": "High-contrast filament band with bright cyan edges.",
-                "details": "Useful for comparing narrow gas ribbons against the darker field.",
-            },
-            {
-                "id": "core-knots",
-                "name": "Core Knots",
-                "focus": "Dense pocket of overlapping structures near the image center.",
-                "details": "Good candidate for overlays and quick annotation prototypes.",
-            },
-            {
-                "id": "outer-field",
-                "name": "Outer Field",
-                "focus": "Dimmer stars and ambient glow at the edge of the capture.",
-                "details": "Helps validate contrast controls without obscuring the target.",
-            },
-        ],
-    },
-    {
-        "id": "eagle-nebula",
-        "title": "Eagle Nebula",
-        "subtitle": "Pillars and dust structures",
-        "summary": "Browse dusty columns and brighter ridges to test simple guided exploration.",
-        "background": "linear-gradient(135deg, #140f2d 0%, #4c1d95 40%, #f97316 100%)",
-        "parts": [
-            {
-                "id": "pillar-band",
-                "name": "Pillar Band",
-                "focus": "Tall dust structures with warm highlights and sharp boundaries.",
-                "details": "Useful for zoom states and side-by-side region descriptions.",
-            },
-            {
-                "id": "ridge-line",
-                "name": "Ridge Line",
-                "focus": "Bright ionized edge where the scene shifts from dust to glow.",
-                "details": "Good for testing labels that need to stay readable on bright areas.",
-            },
-            {
-                "id": "star-field",
-                "name": "Star Field",
-                "focus": "Sparse but bright stars scattered around the pillars.",
-                "details": "Acts as a clean fallback view when no feature is selected.",
-            },
-        ],
-    },
-    {
-        "id": "andromeda",
-        "title": "Andromeda Galaxy",
-        "subtitle": "Wide-frame spiral structure",
-        "summary": "Use the menu to jump between core glow, dust lanes, and the outer halo.",
-        "background": "linear-gradient(135deg, #0f172a 0%, #1d4ed8 45%, #f8fafc 100%)",
-        "parts": [
-            {
-                "id": "core-glow",
-                "name": "Core Glow",
-                "focus": "Bright central region with soft radial fade.",
-                "details": "Best for validating intensity scaling and summary cards.",
-            },
-            {
-                "id": "dust-lanes",
-                "name": "Dust Lanes",
-                "focus": "Thin diagonal bands that break up the brighter spiral disk.",
-                "details": "Ideal for future polygon overlays or feature extraction markers.",
-            },
-            {
-                "id": "outer-halo",
-                "name": "Outer Halo",
-                "focus": "Low-signal edges where the galaxy fades into the background.",
-                "details": "A simple place to test background subtraction ideas later.",
-            },
-        ],
-    },
-]
+BASE_DIR = Path(__file__).resolve().parent
+DATA_PATH = BASE_DIR / "data" / "images.json"
+
+
+def load_catalog() -> list[dict[str, object]]:
+    """Load the local image catalog used by the app."""
+    payload = json.loads(DATA_PATH.read_text())
+    images = payload["images"]
+    for image in images:
+        image["imageUrl"] = f"/static/{image['asset']}"
+    return images
+
+
+IMAGE_CATALOG = load_catalog()
 
 INDEX_HTML = """<!DOCTYPE html>
 <html lang="en">
@@ -198,7 +130,7 @@ INDEX_HTML = """<!DOCTYPE html>
     .hero {
       display: grid;
       gap: 22px;
-      grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+      grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.8fr);
     }
     .panel {
       border: 1px solid var(--line);
@@ -209,42 +141,14 @@ INDEX_HTML = """<!DOCTYPE html>
     }
     .canvas {
       position: relative;
-      min-height: 480px;
-      padding: 28px;
-    }
-    .canvas::before,
-    .canvas::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(6px);
-      opacity: 0.75;
-    }
-    .canvas::before {
-      inset: 10% auto auto 12%;
-      width: 42%;
-      height: 42%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent 72%);
-    }
-    .canvas::after {
-      inset: auto 12% 14% auto;
-      width: 28%;
-      height: 28%;
-      background: radial-gradient(circle, rgba(125, 211, 252, 0.6), transparent 70%);
-    }
-    .canvas-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent);
+      min-height: 540px;
+      background: linear-gradient(180deg, rgba(2, 6, 23, 0.5), rgba(2, 6, 23, 0.1));
     }
     .canvas-copy {
       position: relative;
       max-width: 360px;
       z-index: 1;
+      padding: 28px 28px 0;
     }
     .canvas-copy h2 {
       margin: 12px 0 6px;
@@ -261,8 +165,61 @@ INDEX_HTML = """<!DOCTYPE html>
       margin-top: 22px;
       padding: 16px 18px;
       border-radius: 18px;
-      background: rgba(2, 6, 23, 0.44);
+      background: rgba(2, 6, 23, 0.52);
       border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .viewer {
+      position: relative;
+      margin: 22px 28px 28px;
+      aspect-ratio: 4 / 3;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(2, 6, 23, 0.45);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+    .viewer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+    }
+    .hotspot {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      background: rgba(125, 211, 252, 0.4);
+      box-shadow: 0 0 0 10px rgba(125, 211, 252, 0.12);
+      cursor: pointer;
+    }
+    .hotspot.active {
+      background: rgba(249, 115, 22, 0.8);
+      box-shadow: 0 0 0 14px rgba(249, 115, 22, 0.18);
+    }
+    .hotspot-label {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 10px);
+      transform: translateX(-50%);
+      white-space: nowrap;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.82);
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 600;
     }
     .focus-card h3,
     .details h3 {
@@ -329,9 +286,8 @@ INDEX_HTML = """<!DOCTYPE html>
       .content {
         padding: 22px;
       }
-      .canvas {
-        min-height: 360px;
-      }
+      .canvas { min-height: 0; }
+      .viewer { margin: 22px; }
     }
   </style>
 </head>
@@ -350,7 +306,6 @@ INDEX_HTML = """<!DOCTYPE html>
       <div class="hero">
         <section class="panel">
           <div class="canvas" id="canvas">
-            <div class="canvas-grid"></div>
             <div class="canvas-copy">
               <div class="eyebrow" id="hero-subtitle"></div>
               <h2 id="hero-title"></h2>
@@ -361,6 +316,11 @@ INDEX_HTML = """<!DOCTYPE html>
                 <p id="focus-text"></p>
               </div>
             </div>
+            <div class="viewer">
+              <img id="hero-image" alt="">
+              <div class="overlay"></div>
+              <div id="hotspot-layer"></div>
+            </div>
           </div>
         </section>
         <aside class="panel details">
@@ -369,7 +329,7 @@ INDEX_HTML = """<!DOCTYPE html>
           <p id="details-summary"></p>
           <div class="part-list" id="part-list"></div>
           <div class="cluster-note">
-            Deployed in-cluster, this can stay simple:
+            For local iteration this stays dead simple:
             <code>/</code> for the UI,
             <code>/api/images</code> for data,
             and <code>/healthz</code> for probes.
@@ -386,6 +346,8 @@ INDEX_HTML = """<!DOCTYPE html>
     const imageMenu = document.getElementById("image-menu");
     const partList = document.getElementById("part-list");
     const canvas = document.getElementById("canvas");
+    const hotspotLayer = document.getElementById("hotspot-layer");
+    const heroImage = document.getElementById("hero-image");
 
     function renderImageMenu() {
       imageMenu.innerHTML = "";
@@ -404,6 +366,7 @@ INDEX_HTML = """<!DOCTYPE html>
 
     function renderParts() {
       partList.innerHTML = "";
+      hotspotLayer.innerHTML = "";
       activeImage.parts.forEach((part) => {
         const button = document.createElement("button");
         button.className = part.id === activePart.id ? "active" : "";
@@ -413,11 +376,25 @@ INDEX_HTML = """<!DOCTYPE html>
           render();
         });
         partList.appendChild(button);
+
+        const hotspot = document.createElement("button");
+        hotspot.className = part.id === activePart.id ? "hotspot active" : "hotspot";
+        hotspot.style.left = `${part.hotspot.x}%`;
+        hotspot.style.top = `${part.hotspot.y}%`;
+        hotspot.setAttribute("aria-label", part.name);
+        hotspot.innerHTML = `<span class="hotspot-label">${part.name}</span>`;
+        hotspot.addEventListener("click", () => {
+          activePart = part;
+          render();
+        });
+        hotspotLayer.appendChild(hotspot);
       });
     }
 
     function renderDetails() {
       canvas.style.background = activeImage.background;
+      heroImage.src = activeImage.imageUrl;
+      heroImage.alt = activeImage.title;
       document.getElementById("hero-subtitle").textContent = activeImage.subtitle;
       document.getElementById("hero-title").textContent = activeImage.title;
       document.getElementById("hero-summary").textContent = activeImage.summary;
@@ -442,7 +419,7 @@ INDEX_HTML = """<!DOCTYPE html>
 
 def create_app() -> Flask:
     """Create the Flask application."""
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder="static", static_url_path="/static")
 
     @app.get("/")
     def index() -> str:

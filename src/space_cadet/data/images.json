@@ -1,0 +1,97 @@
+{
+  "images": [
+    {
+      "id": "veil-nebula",
+      "title": "Veil Nebula",
+      "subtitle": "Supernova remnant sweep",
+      "summary": "Local static dataset for iterating on image selection, overlays, and region details.",
+      "background": "linear-gradient(135deg, #020617 0%, #102a43 45%, #0f766e 100%)",
+      "asset": "images/veil-nebula.svg",
+      "parts": [
+        {
+          "id": "western-arc",
+          "name": "Western Arc",
+          "focus": "High-contrast filament band with bright cyan edges.",
+          "details": "Useful for testing labels and highlight states on a brighter section of the image.",
+          "hotspot": { "x": 25, "y": 34 }
+        },
+        {
+          "id": "core-knots",
+          "name": "Core Knots",
+          "focus": "Dense cluster of brighter ribbons in the center of the frame.",
+          "details": "A good stand-in for future region metadata such as notes, links, and measurements.",
+          "hotspot": { "x": 56, "y": 48 }
+        },
+        {
+          "id": "outer-field",
+          "name": "Outer Field",
+          "focus": "Dimmer edge region with more empty space around the subject.",
+          "details": "Useful for checking legibility and navigation when the selected area is less visually busy.",
+          "hotspot": { "x": 78, "y": 70 }
+        }
+      ]
+    },
+    {
+      "id": "eagle-nebula",
+      "title": "Eagle Nebula",
+      "subtitle": "Pillars and dust structures",
+      "summary": "Small local app slice with real assets in-repo and named regions for the sidebar and overlay.",
+      "background": "linear-gradient(135deg, #140f2d 0%, #4c1d95 40%, #f97316 100%)",
+      "asset": "images/eagle-nebula.svg",
+      "parts": [
+        {
+          "id": "pillar-band",
+          "name": "Pillar Band",
+          "focus": "Tall dust structures with strong warm highlights.",
+          "details": "Useful for validating how the UI behaves when multiple adjacent hotspots are close together.",
+          "hotspot": { "x": 34, "y": 55 }
+        },
+        {
+          "id": "ridge-line",
+          "name": "Ridge Line",
+          "focus": "Bright transition where the scene moves from dust to glow.",
+          "details": "A good test case for descriptive copy and future annotation metadata.",
+          "hotspot": { "x": 61, "y": 37 }
+        },
+        {
+          "id": "star-field",
+          "name": "Star Field",
+          "focus": "Sparser region with brighter isolated stars.",
+          "details": "This gives the UI a lighter-weight region to contrast with the denser structures.",
+          "hotspot": { "x": 77, "y": 24 }
+        }
+      ]
+    },
+    {
+      "id": "andromeda",
+      "title": "Andromeda Galaxy",
+      "subtitle": "Wide-frame spiral structure",
+      "summary": "A straightforward local browser for trying image-first navigation before cluster integration.",
+      "background": "linear-gradient(135deg, #0f172a 0%, #1d4ed8 45%, #f8fafc 100%)",
+      "asset": "images/andromeda.svg",
+      "parts": [
+        {
+          "id": "core-glow",
+          "name": "Core Glow",
+          "focus": "Bright central region with a softer radial falloff.",
+          "details": "Acts as the most obvious target in the image and a good default selected region.",
+          "hotspot": { "x": 49, "y": 49 }
+        },
+        {
+          "id": "dust-lanes",
+          "name": "Dust Lanes",
+          "focus": "Dark bands crossing the brighter disk.",
+          "details": "Useful for future overlay work where region outlines matter more than a single point.",
+          "hotspot": { "x": 38, "y": 58 }
+        },
+        {
+          "id": "outer-halo",
+          "name": "Outer Halo",
+          "focus": "Low-signal edge where the galaxy fades into background space.",
+          "details": "Good for testing low-contrast regions and secondary descriptive copy.",
+          "hotspot": { "x": 72, "y": 34 }
+        }
+      ]
+    }
+  ]
+}
