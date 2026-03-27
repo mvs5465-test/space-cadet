@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: image.repository
+    value: ghcr.io/mvs5465-test/space-cadet
+    forcestring: true
+  - name: image.tag
+    value: main@sha256:4b56a2c1776f685a64079b201168aa3c028dbcae94be63b51d6bf84396031d80
+    forcestring: true
