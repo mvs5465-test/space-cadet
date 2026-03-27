@@ -4,5 +4,5 @@ helm:
     value: ghcr.io/mvs5465-test/space-cadet
     forcestring: true
   - name: image.tag
-    value: main@sha256:e471d507bb820d6b94048b94b728d54647339089dece0f258c52d852e397bc0e
+    value: main@sha256:34de61bdce493c523a2c797deb32a05fa59a543cf1b6cfaac7b7fe2c0e8e785b
     forcestring: true
