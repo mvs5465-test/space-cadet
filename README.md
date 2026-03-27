@@ -6,6 +6,15 @@ Right now the app is intentionally small: a sidebar of captures, an actual in-re
 
 The image data now comes from NASA's Image and Video Library, but it is still pulled into local files so the app stays fast and deterministic while you iterate.
 
+## What Is In The Repo
+
+- `src/space_cadet/app.py`: Flask app and HTTP routes
+- `src/space_cadet/data/nasa_sources.json`: curated NASA record IDs to import
+- `src/space_cadet/data/images.json`: generated image metadata used by the UI
+- `src/space_cadet/static/images/`: checked-in local assets, including downloaded NASA images
+- `tests/`: app and importer coverage
+- `chart/` and `Dockerfile`: leftover deployment artifacts from the earlier cluster-ready pass
+
 ## Local run
 
 ```bash
@@ -16,6 +25,13 @@ python -m space_cadet.app
 ```
 
 Then open `http://127.0.0.1:8080`.
+
+## Test Loop
+
+```bash
+source .venv/bin/activate
+pytest
+```
 
 ## Current local data model
 
@@ -39,6 +55,8 @@ That command:
 - downloads local image files into `src/space_cadet/static/images/nasa/`
 - regenerates `src/space_cadet/data/images.json`
 
+If you add or swap source records, run the importer again before committing so the checked-in JSON and local assets stay in sync.
+
 ## Endpoints
 
 - `GET /` serves the UI
@@ -47,5 +65,5 @@ That command:
 
 ## Notes
 
-- The repo still keeps the Dockerfile and chart from the earlier cluster-ready pass.
-- For now the fastest loop is the local Flask app with repo-backed NASA assets and generated JSON data.
+- The app is optimized for local iteration first; the checked-in NASA assets keep the UI fast and deterministic.
+- The Dockerfile and Helm chart are still available if the project moves back toward cluster deployment later.
